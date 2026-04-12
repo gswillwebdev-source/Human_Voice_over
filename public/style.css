@@ -1,0 +1,372 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+    animation: slideDown 0.6s ease;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.main-content {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.6s ease;
+}
+
+.input-section {
+    margin-bottom: 30px;
+}
+
+.input-section h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.3em;
+}
+
+#scriptInput {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    resize: vertical;
+    transition: border-color 0.3s;
+}
+
+#scriptInput:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.char-count {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #999;
+}
+
+.controls-section {
+    margin-bottom: 30px;
+}
+
+.voice-settings {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.setting {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting label {
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.setting select {
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1em;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.setting select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.speed-input,
+.pitch-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.speed-input input[type="range"],
+.pitch-input input[type="range"] {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.speed-input input[type="range"]::-webkit-slider-thumb,
+.pitch-input input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #667eea;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.speed-input input[type="range"]::-moz-range-thumb,
+.pitch-input input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #667eea;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.speed-input span,
+.pitch-input span {
+    min-width: 35px;
+    text-align: center;
+    color: #667eea;
+    font-weight: 600;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+    min-width: 120px;
+}
+
+.btn-play {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-play:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-play:active {
+    transform: translateY(0);
+}
+
+.btn-pause,
+.btn-resume {
+    background: #ffc107;
+    color: #333;
+}
+
+.btn-pause:hover,
+.btn-resume:hover {
+    background: #ffb300;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+}
+
+.btn-stop {
+    background: #f44336;
+    color: white;
+}
+
+.btn-stop:hover {
+    background: #da190b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+}
+
+.btn-download {
+    background: #4caf50;
+    color: white;
+}
+
+.btn-download:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.status-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#status {
+    color: #666;
+    font-size: 0.95em;
+}
+
+.status-section.playing #status::before {
+    content: "🔊 ";
+}
+
+.status-section.paused #status::before {
+    content: "⏸ ";
+}
+
+.status-section.stopped #status::before {
+    content: "⏹ ";
+}
+
+.history-section {
+    border-top: 2px solid #e0e0e0;
+    padding-top: 25px;
+}
+
+.history-section h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.history-list {
+    display: grid;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border-left: 4px solid #667eea;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-item:hover {
+    background: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.history-item-text {
+    flex: 1;
+    color: #666;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.history-item-time {
+    font-size: 0.8em;
+    color: #999;
+    margin-left: 10px;
+}
+
+.empty-history {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+    font-size: 0.95em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .voice-settings {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        min-width: auto;
+    }
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hidden {
+    display: none !important;
+}

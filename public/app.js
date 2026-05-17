@@ -419,4 +419,42 @@ class TextToSpeechApp {
 // Initialize the app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new TextToSpeechApp();
+    initPwaInstallBanner();
 });
+
+// PWA Install Banner
+let deferredPrompt = null;
+
+function initPwaInstallBanner() {
+    const banner = document.getElementById('installBanner');
+    const installBtn = document.getElementById('installBtn');
+    const dismissBtn = document.getElementById('dismissInstall');
+
+    if (!banner || !installBtn || !dismissBtn) return;
+
+    // Capture the install prompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        banner.classList.remove('hidden');
+    });
+
+    installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        banner.classList.add('hidden');
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('PWA install outcome:', outcome);
+        deferredPrompt = null;
+    });
+
+    dismissBtn.addEventListener('click', () => {
+        banner.classList.add('hidden');
+    });
+
+    // Hide banner after install
+    window.addEventListener('appinstalled', () => {
+        banner.classList.add('hidden');
+        deferredPrompt = null;
+    });
+}

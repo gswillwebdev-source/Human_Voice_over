@@ -3,13 +3,54 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="VoiceOver">
+    <meta name="theme-color" content="#764ba2">
+    <meta name="description" content="AI-powered text-to-speech voice over app. Paste your script and let AI read it out loud.">
+
     <title>AI Text-to-Speech</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2138089895232822"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container">
+        <!-- Top Banner Ad -->
+        <div class="ad-banner ad-banner-top">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-2138089895232822"
+                data-ad-slot="auto"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- PWA Install Banner -->
+        <div id="installBanner" class="install-banner hidden">
+            <span>📲 Install AI VoiceOver as an app</span>
+            <button id="installBtn" class="btn-install">Install</button>
+            <button id="dismissInstall" class="btn-dismiss">✕</button>
+        </div>
+
         <header>
             <h1>🎤 AI Text-to-Speech</h1>
             <p>Paste your script and let AI read it out loud</p>
@@ -79,10 +120,31 @@
                 <h2>Recent Scripts</h2>
                 <div id="historyList" class="history-list"></div>
             </div>
+
+            <!-- Mid-page Ad -->
+            <div class="ad-banner ad-banner-bottom">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-2138089895232822"
+                    data-ad-slot="auto"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
         </div>
     </div>
 
     <script src="app.js"></script>
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service worker registered:', reg.scope))
+                    .catch(err => console.warn('Service worker registration failed:', err));
+            });
+        }
+    </script>
 </body>
 
 </html>

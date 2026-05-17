@@ -69,12 +69,12 @@ app.post('/api/synthesize', async (req, res) => {
       for (let i = 0; i < chunks.length; i++) {
         const chunkText = String(chunks[i]).trim();
         if (!chunkText) continue;
-        
+
         console.log(`Processing chunk ${i + 1}/${chunks.length}... (${chunkText.length} chars)`);
 
         try {
           const speech = new gTTS(chunkText, lang);
-          
+
           // Get audio as buffer
           const audioBuffer = await new Promise((resolve, reject) => {
             const buffers = [];
